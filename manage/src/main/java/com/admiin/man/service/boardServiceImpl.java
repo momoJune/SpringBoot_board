@@ -8,7 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.admiin.man.dao.BoardDAO;
 import com.admiin.man.vo.BoardVO;
+import com.admiin.man.vo.PagingVO;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Transactional
 @Service("boardService")
 public class boardServiceImpl implements boardService {
@@ -41,6 +45,7 @@ public class boardServiceImpl implements boardService {
 
 	@Override
 	public BoardVO selectBoard(int idxBoard) {
+		log.info("boardServiceImpl selectBoard 실행");
 		BoardVO boardVO = new BoardVO();
 		if(idxBoard != 0) {
 			boardVO = boardDAO.selectBoard(idxBoard);

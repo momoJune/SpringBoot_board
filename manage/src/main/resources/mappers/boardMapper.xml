@@ -6,7 +6,7 @@
 <mapper namespace="com.admiin.man.dao.BoardDAO">
 
 	<select id="selectList" resultType="BoardVO">
-		select * from sample_board
+		select * from sample_board 
 	</select>
 
 	<insert id="insertBoard" parameterType="BoardVO">
@@ -24,5 +24,6 @@
 	<select id="selectBoard" parameterType="int">
 		select * from sample_board where idx = #{idx}
 	</select>
+	
 	
 </mapper>

@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import com.admiin.man.vo.BoardVO;
+import com.admiin.man.vo.PagingVO;
 
 
 public interface boardService {

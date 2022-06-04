@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.admiin.man.vo.BoardVO;
+import com.admiin.man.vo.PagingVO;
 
 @Mapper
 public interface BoardDAO {
@@ -19,5 +20,7 @@ public interface BoardDAO {
 	void deleteBoard(int idxBoard);
 	// 게시글 하나 가져오기
 	BoardVO selectBoard(int idxBoard);
+	
+
 	
 }
