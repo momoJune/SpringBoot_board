@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.admiin.man.service.boardService;
@@ -26,9 +28,20 @@ public class HelloController {
 		return "index";
 	}
 	
-	@RequestMapping("/board/boardInsert")
+	@PostMapping("/board/boardView")
+	public String boardView() {
+		return "boardView";
+	}
+	
+	@GetMapping("/board/boardInsert")
 	public String boardInsert() {
 		return "boardInsert";
+	}
+	
+	@PostMapping("/board/boardInsert")
+	public String boardInsertOk(BoardVO boardVO) {
+		boardService.insertBoard(boardVO);
+		return "redirect:/board/boardList";
 	}
 	
 	@RequestMapping("/board/boardList")

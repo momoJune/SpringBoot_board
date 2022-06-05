@@ -10,7 +10,8 @@
 
 <head>
 
-    <title>Qna</title>
+
+    <title>게시판</title>
 <%-- 부트스트랩을 사용하기 위한 준비 시작 --%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -34,6 +35,7 @@
 </style>
 </head>
 <body>
+<form  id="frm" method="post">
 	<table>
 		<tr>
 			<td colspan="6" class="title">
@@ -50,19 +52,15 @@
 			<th width="55%">제목</th>
 			<th>작성자</th>
 			<th>작성일</th>
-			<th>날짜</th>
 		</tr>
 			<c:forEach var="vo" items="${boardList }" >
 				<tr align="center">
 					<td>${vo.idx}</td>
 					<td>
-						<c:out value="${vo.writer }"></c:out>
-					</td>
-					<td>
 						<c:out value="${vo.title}"></c:out>
 					</td>
 					<td>
-						<c:out value="${vo.content}"></c:out>
+						<c:out value="${vo.writer }"></c:out>
 					</td>
 					<td>
 						<fmt:formatDate value="${vo.regDate }" pattern="yyyy-MM-dd"/>
@@ -84,7 +82,8 @@
 				<button class="btn btn-outline-success btn-sm" onclick="location.href='boardInsert' ">새글쓰기</button>
 			</td>
 		</tr>
-	</table>	            
+	</table>
+	</form>	            
 </body>
 
 </html>
