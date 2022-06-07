@@ -9,15 +9,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.admiin.man.service.boardService;
 import com.admiin.man.vo.BoardVO;
 import com.admiin.man.vo.PagingVO;
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Controller
+@RestController
+@RequestMapping(value = "/board")
 public class HelloController {
 	
 	@Autowired
@@ -28,23 +32,31 @@ public class HelloController {
 		return "index";
 	}
 	
-	@PostMapping("/board/boardView")
-	public String boardView() {
+	@PostMapping("/boardView")
+	public String boardView(@RequestParam(value = "boardIdx", required = false) int boardIdx) throws JsonProcessingException  {
+		boardService.selectBoard(boardIdx);
 		return "boardView";
 	}
 	
-	@GetMapping("/board/boardInsert")
+	@GetMapping("/boardInsert")
 	public String boardInsert() {
 		return "boardInsert";
 	}
 	
-	@PostMapping("/board/boardInsert")
+	@PostMapping("/boardInsert")
 	public String boardInsertOk(BoardVO boardVO) {
 		boardService.insertBoard(boardVO);
-		return "redirect:/board/boardList";
+		return "redirect:/boardList";
 	}
 	
-	@RequestMapping("/board/boardList")
+	
+	@GetMapping("/boardDelete")
+	public String boardDelete(@RequestParam(value = "boardIdx", required = false) int boardIdx) {
+		boardService.deleteBoard(boardIdx);
+		return "redirect:/boardList";
+	}
+	
+	@RequestMapping("/boardList")
 	public String boardList(Model model) {
 		log.info("board/boardList boardList 컨트롤러");
 		List<BoardVO> boardList = null;

@@ -21,7 +21,7 @@
 		delete from sample_board where idx = #{idx}
 	</delete>
 	
-	<select id="selectBoard" parameterType="int">
+	<select id="selectBoard" parameterType="int" resultType="BoardVO">
 		select * from sample_board where idx = #{idx}
 	</select>
 	
