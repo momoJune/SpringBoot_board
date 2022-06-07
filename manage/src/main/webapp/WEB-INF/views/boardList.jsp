@@ -79,7 +79,7 @@
 			</c:forEach>
 		<tr>
 		<td class="sub_title" colspan="6">
-				<button class="btn btn-outline-success btn-sm" onclick="location.href='boardInsert' ">새글쓰기</button>
+				<button  type="button" class="btn btn-outline-success btn-sm" onclick="location.href='/board/boardInsert' ">새글쓰기</button>
 			</td>
 		</tr>
 	</table>

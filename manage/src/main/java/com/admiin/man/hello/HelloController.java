@@ -20,8 +20,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@RestController
-@RequestMapping(value = "/board")
+@Controller
 public class HelloController {
 	
 	@Autowired
@@ -32,31 +31,31 @@ public class HelloController {
 		return "index";
 	}
 	
-	@PostMapping("/boardView")
+	@PostMapping("/board/boardView")
 	public String boardView(@RequestParam(value = "boardIdx", required = false) int boardIdx) throws JsonProcessingException  {
 		boardService.selectBoard(boardIdx);
 		return "boardView";
 	}
 	
-	@GetMapping("/boardInsert")
+	@GetMapping("/board/boardInsert")
 	public String boardInsert() {
 		return "boardInsert";
 	}
 	
-	@PostMapping("/boardInsert")
+	@PostMapping("/board/boardInsert")
 	public String boardInsertOk(BoardVO boardVO) {
 		boardService.insertBoard(boardVO);
-		return "redirect:/boardList";
+		return "redirect:/board/boardList";
 	}
 	
 	
-	@GetMapping("/boardDelete")
+	@GetMapping("/board/boardDelete")
 	public String boardDelete(@RequestParam(value = "boardIdx", required = false) int boardIdx) {
 		boardService.deleteBoard(boardIdx);
 		return "redirect:/boardList";
 	}
 	
-	@RequestMapping("/boardList")
+	@RequestMapping("/board/boardList")
 	public String boardList(Model model) {
 		log.info("board/boardList boardList 컨트롤러");
 		List<BoardVO> boardList = null;
